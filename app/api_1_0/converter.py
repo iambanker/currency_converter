@@ -1,5 +1,6 @@
 from flask import jsonify
 from . import api
+from ..utils import prep_response
 
 
 @api.route('/currency', methods=['GET'])
@@ -14,9 +15,9 @@ def currency():
     -----
     currency - array of available currencies
     """
-    response = jsonify({"result": "Hello pairs!",
-                        "error": [], })
-    return response
+    resp = prep_response()
+    resp["result"] = "Hello currency!"
+    return jsonify(resp)
 
 
 @api.route('/convert', methods=['GET'])
@@ -38,6 +39,6 @@ def convert():
     curr_to - string, currency of amount_to
     curr_rate - float, currency rate used to convert amount
     """
-    response = jsonify({"result": "Hello converter!",
-                        "error": []})
-    return response
+    resp = prep_response()
+    resp["result"] = "Hello converter!"
+    return jsonify(resp)
