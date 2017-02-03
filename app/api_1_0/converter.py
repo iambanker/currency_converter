@@ -14,12 +14,12 @@ def currency():
     -----
     currency - array of available currencies
     """
-    response = {"result": "Hello pairs!",
-                "error": [], }
-    return jsonify(response)
+    response = jsonify({"result": "Hello pairs!",
+                        "error": [], })
+    return response
 
 
-@api.route('/convert', methods=['POST'])
+@api.route('/convert', methods=['GET'])
 def convert():
     """
     Return converted amount to specified currency.
@@ -38,6 +38,6 @@ def convert():
     curr_to - string, currency of amount_to
     curr_rate - float, currency rate used to convert amount
     """
-    response = {"result": "Hello converter!",
-                "error": []}
-    return jsonify(response)
+    response = jsonify({"result": "Hello converter!",
+                        "error": []})
+    return response
