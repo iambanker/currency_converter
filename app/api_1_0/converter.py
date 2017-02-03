@@ -1,9 +1,13 @@
 from flask import jsonify
 from . import api
 from ..utils import prep_response
+from ..docs import auto
+
+# TODO: use logging
 
 
 @api.route('/currency', methods=['GET'])
+@auto.doc(groups="public")
 def currency():
     """
     Return list of available currencies.
@@ -21,6 +25,7 @@ def currency():
 
 
 @api.route('/convert', methods=['GET'])
+@auto.doc(groups="public")
 def convert():
     """
     Return converted amount to specified currency.
