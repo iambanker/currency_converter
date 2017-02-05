@@ -1,6 +1,6 @@
 # Currency convertor
 
-Web service for conversion between currencies implemented in `flask`.
+Web service for conversion between currencies implemented in [flask](http://flask.pocoo.org).
 
 * v0.1
 * Python 3.5.2
@@ -114,6 +114,6 @@ Content-Length: 163
 ## Todos
 
 * write more tests
-* change auto-documentation from `flask-autodoc`, candidate solution
+* change auto-documentation from `flask-autodoc`, candidate solution [Swagger](https://github.com/rantav/flask-restful-swagger)
 * use some in-memory database like `Redis` instead of raw file to store currency rates
 * add authentication
