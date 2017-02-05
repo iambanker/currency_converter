@@ -21,6 +21,7 @@ def update_currency_rates(config_filename="conf/config.json"):
             reply.raise_for_status()
         except requests.exceptions.HTTPError as e:
             print("Currency rates were not updated {0}: {1}".format(time.ctime(), e.args))
+            # Prevent immediate request repetition in case something is wrong with currency rate api
             time.sleep(60)
             continue
         db = reply.json()

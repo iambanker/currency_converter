@@ -26,7 +26,7 @@ def currency():
         abort(500)
     currency_list = list(curr_db.keys())
     resp = prep_response()
-    resp["result"] = currency_list
+    resp["result"] = {"currency": currency_list}
     return jsonify(resp)
 
 
@@ -46,9 +46,9 @@ def convert():
     -----
     amount_from - float, amount in from currency rounded to 2 decimal places
     amount_to - float, amount in to currency rounded to 2 decimal places
+    curr_rate - float, currency rate used to convert amount rounded to 3 decimal places
     curr_from - string, currency of amount_from
     curr_to - string, currency of amount_to
-    curr_rate - float, currency rate used to convert amount rounded to 3 decimal places
     """
     amount = request.args.get("amount", None)
     if not amount:
