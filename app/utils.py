@@ -1,5 +1,9 @@
 import json
 
+# import config
+with open("conf/config.json") as f:
+    config = json.load(f)
+
 
 class InternalError(Exception):
     pass
@@ -59,7 +63,8 @@ def get_curr_db():
     Return dict of currency rates from currency database.
     """
     try:
-        with open("db/latest.json") as conn:
+        db_path = config["DB_PATH"]
+        with open(db_path) as conn:
             db = json.load(conn)
         curr_db = db["rates"]
     except FileNotFoundError:
