@@ -25,6 +25,9 @@ def update_currency_rates(config_filename="conf/config.json"):
             time.sleep(60)
             continue
         db = reply.json()
+        # Convert all rates to float just to be sure
+        for k, v in db["rates"].items():
+            db["rates"][k] = float(v)
         with open(DB_PATH, "w") as conn:
             json.dump(db, conn)
         print("Currency rates updated {0}".format(time.ctime()))
