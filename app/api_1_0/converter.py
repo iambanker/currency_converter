@@ -1,9 +1,7 @@
 from flask import jsonify, request, abort
 from . import api
-from ..utils import prep_response, convert_amount, get_curr_db, InternalError
+from ..utils import prep_response, convert_amount, get_curr_db, InternalError, api_logger
 from ..docs import auto
-
-# TODO: use logging
 
 
 @api.route('/currency', methods=['GET'])
@@ -22,7 +20,7 @@ def currency():
     try:
         curr_db = get_curr_db()
     except InternalError as e:
-        print(e.args)
+        api_logger.error(e.args)
         abort(500)
     currency_list = list(curr_db.keys())
     resp = prep_response()
@@ -66,7 +64,7 @@ def convert():
         resp["result"] = result
         return jsonify(resp)
     except InternalError as e:
-        print(e.args)
+        api_logger.error(e.args)
         abort(500)
     except Exception as e:
         abort(400, {"message": e.args[0]})

@@ -117,3 +117,5 @@ Content-Length: 163
 * change auto-documentation from `flask-autodoc`, candidate solution [Swagger](https://github.com/rantav/flask-restful-swagger)
 * use some in-memory database like `Redis` instead of raw file to store currency rates
 * add authentication
+* improve logging features
+* improve app configuration

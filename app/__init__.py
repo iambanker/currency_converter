@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from .utils import api_logger
 
 
 def create_app(config_filename=None):
@@ -11,6 +12,8 @@ def create_app(config_filename=None):
 
     if config_filename:
         app.config.from_pyfile(config_filename)
+
+    app.logger.addHandler(api_logger)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

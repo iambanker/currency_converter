@@ -1,10 +1,21 @@
 import json
+import logging
 
 # import config
 with open("conf/config.json") as f:
     config = json.load(f)
 
+# Create api_logger
+api_logger = logging.getLogger("API_logger")
+sh = logging.StreamHandler()
+sh.setFormatter(logging.Formatter(
+    '[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s '
+    '[in %(pathname)s:%(lineno)d]'
+))
+api_logger.addHandler(sh)
 
+
+# Custom exception for handling internal errors
 class InternalError(Exception):
     pass
 
@@ -37,7 +48,8 @@ def convert_amount(amount, curr_from, curr_to):
     try:
         amount = round(float(amount), 2)
     except ValueError:
-        raise Exception("specified amount <{0}> is not float type".format(amount))
+        raise Exception(
+            "specified amount <{0}> is not float type".format(amount))
     curr_db = get_curr_db()
     rate_from = curr_db.get(curr_from, None)
     if not rate_from:
