@@ -26,6 +26,7 @@ In case you want to update currency rates periodically register at [openexchange
 {
   "OPENFX_URL": "https://openexchangerates.org/api/latest.json?app_id=",
   "OPENFX_KEY": "insert_your_api_key",
+  "UPDATE_INTERVAL": 86400,
   ...
 }
 ```
@@ -35,6 +36,8 @@ and run
 ```
 python db/db_manager.py & # run as background service
 ```
+
+`UPDATE_INTERVAL` specifies how often rates should be updated, default is every 24 hours.
 
 ## Example
 
