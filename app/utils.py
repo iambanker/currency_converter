@@ -35,7 +35,7 @@ def convert_amount(amount, curr_from, curr_to):
     curr_rate - float, currency rate used to convert amount
     """
     try:
-        amount = float(amount)
+        amount = round(float(amount), 2)
     except ValueError:
         raise Exception("specified amount <{0}> is not float type".format(amount))
     curr_db = get_curr_db()
@@ -58,17 +58,20 @@ def convert_amount(amount, curr_from, curr_to):
     return result
 
 
-def get_curr_db():
+def get_curr_db(db_path=None):
     """
     Return dict of currency rates from currency database.
     """
-    try:
+    if not db_path:
         db_path = config["DB_PATH"]
+    try:
         with open(db_path) as conn:
             db = json.load(conn)
         curr_db = db["rates"]
     except FileNotFoundError:
         raise InternalError("Database couldn't be loaded")
+    except json.decoder.JSONDecodeError:
+        raise InternalError("Database is not a JSON format")
     except KeyError:
         raise InternalError("Currency database is not available")
 

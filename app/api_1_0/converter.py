@@ -38,7 +38,7 @@ def convert():
 
     Input
     -----
-    amount - float, amount to convert
+    amount - float, amount to convert, works also with negative numbers
     curr_from - string, specify currency of amount
     curr_to - string, specify currency to which amount will be converted
 

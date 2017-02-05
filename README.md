@@ -115,4 +115,5 @@ Content-Length: 163
 
 * write more tests
 * change auto-documentation from `flask-autodoc`, candidate solution
+* use some in-memory database like `Redis` instead of raw file to store currency rates
 * add authentication
